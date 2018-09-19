@@ -16,34 +16,30 @@ public class JsonUtils {
 
     public static Sandwich parseSandwichJson(String json) throws JSONException {
 
-
+        Sandwich sandwich_detail;
         JSONObject jsonObj = new JSONObject(json);
-        JSONObject name=jsonObj.getJSONObject("name");
+        JSONObject name = jsonObj.getJSONObject("name");
 
-        String MainName=name.getString("mainName");
+        String MainName = name.getString("mainName");
 
         JSONArray AlsoKnownAsArray = new JSONArray(name.getString("alsoKnownAs"));
         List<String> alsoKnownAs = new ArrayList<>();
-        if (AlsoKnownAsArray != null) {
-            for (int i=0;i<AlsoKnownAsArray.length();i++){
-                alsoKnownAs.add(AlsoKnownAsArray.getString(i));
-            }
+        for (int i = 0; i < AlsoKnownAsArray.length(); i++) {
+            alsoKnownAs.add(AlsoKnownAsArray.getString(i));
         }
 
-        String placeOfOrigin=jsonObj.getString("placeOfOrigin");
-        String description=jsonObj.getString("description");
-        String image=jsonObj.getString("image");
+        String placeOfOrigin = jsonObj.getString("placeOfOrigin");
+        String description = jsonObj.getString("description");
+        String image = jsonObj.getString("image");
 
         JSONArray IngredientsArray = new JSONArray(jsonObj.getString("ingredients"));
         List<String> ingredients = new ArrayList<>();
-        if (IngredientsArray != null) {
-            for (int i=0;i<IngredientsArray.length();i++){
-                ingredients.add(IngredientsArray.getString(i));
-            }
+        for (int i = 0; i < IngredientsArray.length(); i++) {
+            ingredients.add(IngredientsArray.getString(i));
         }
 
 
-        Sandwich sandwich_detail = new Sandwich(MainName,alsoKnownAs,placeOfOrigin,description,image,ingredients
+        sandwich_detail = new Sandwich(MainName, alsoKnownAs, placeOfOrigin, description, image, ingredients
         );
 
         return sandwich_detail;
