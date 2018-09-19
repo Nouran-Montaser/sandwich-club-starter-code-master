@@ -22,11 +22,11 @@ public class JsonUtils {
 
         String MainName=name.getString("mainName");
 
-        JSONArray Also = new JSONArray(name.getString("alsoKnownAs"));
-        List<String> alsoKnownAs = new ArrayList<String>();
-        if (Also != null) {
-            for (int i=0;i<Also.length();i++){
-                alsoKnownAs.add(Also.getString(i));
+        JSONArray AlsoKnownAsArray = new JSONArray(name.getString("alsoKnownAs"));
+        List<String> alsoKnownAs = new ArrayList<>();
+        if (AlsoKnownAsArray != null) {
+            for (int i=0;i<AlsoKnownAsArray.length();i++){
+                alsoKnownAs.add(AlsoKnownAsArray.getString(i));
             }
         }
 
@@ -34,11 +34,11 @@ public class JsonUtils {
         String description=jsonObj.getString("description");
         String image=jsonObj.getString("image");
 
-        JSONArray m = new JSONArray(jsonObj.getString("ingredients"));
-        List<String> ingredients = new ArrayList<String>();
-        if (m != null) {
-            for (int i=0;i<m.length();i++){
-                ingredients.add(m.getString(i));
+        JSONArray IngredientsArray = new JSONArray(jsonObj.getString("ingredients"));
+        List<String> ingredients = new ArrayList<>();
+        if (IngredientsArray != null) {
+            for (int i=0;i<IngredientsArray.length();i++){
+                ingredients.add(IngredientsArray.getString(i));
             }
         }
 
@@ -46,7 +46,6 @@ public class JsonUtils {
         Sandwich sandwich_detail = new Sandwich(MainName,alsoKnownAs,placeOfOrigin,description,image,ingredients
         );
 
-        Log.i("Jsonloool",sandwich_detail+"");
         return sandwich_detail;
     }
 }
